@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deber 2 – Desarrollo de Software</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --accent:   #3a86ff;
+            --bg-start: #0f1c2e;
+            --bg-end:   #1a3a5c;
+            --card:     rgba(255,255,255,0.05);
+            --border:   rgba(255,255,255,0.12);
+            --green:    #22c55e;
+        }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body {
+            font-family: 'Inter', Arial, sans-serif;
+            background: linear-gradient(135deg, var(--bg-start) 0%, var(--bg-end) 100%);
+            min-height: 100vh; padding: 40px 20px; color: #fff;
+        }
+        body::before {
+            content: ''; position: fixed; inset: 0;
+            background: radial-gradient(circle at 15% 25%, rgba(58,134,255,0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 85% 75%, rgba(58,134,255,0.07) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        .container { max-width:800px; margin:0 auto; animation: fadeUp 0.7s cubic-bezier(0.22,1,0.36,1) both; }
+        @keyframes fadeUp { from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)} }
+
+        .back-btn { display:inline-flex; align-items:center; gap:6px; color:rgba(255,255,255,0.45); text-decoration:none; font-size:0.82rem; transition:color 0.2s; }
+        .back-btn:hover { color:var(--accent); }
+        .back-btn svg { width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round; }
+
+        .header { display:flex; align-items:center; gap:16px; margin-bottom:36px; }
+        .header-text h1 { font-size:1.6rem; font-weight:700; line-height:1.2; }
+        .header-text h1 span { color:var(--accent); }
+        .header-text p { font-size:0.8rem; color:rgba(255,255,255,0.4); text-transform:uppercase; letter-spacing:2px; margin-top:4px; }
+
+        .card { background:var(--card); border:1px solid var(--border); border-radius:16px; backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); overflow:hidden; margin-bottom:24px; box-shadow:0 8px 32px rgba(0,0,0,0.3); }
+        .card-header { display:flex; align-items:center; gap:10px; padding:18px 24px; border-bottom:1px solid var(--border); }
+        .card-header svg { width:18px;height:18px;stroke:var(--accent);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0; }
+        .card-header span { font-size:0.88rem; font-weight:600; color:rgba(255,255,255,0.85); text-transform:uppercase; letter-spacing:1px; }
+
+        .video-body { padding:24px; }
+        .video-wrapper { position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:10px; background:rgba(0,0,0,0.3); border:1px solid var(--border); }
+        .video-wrapper iframe { position:absolute;top:0;left:0;width:100%;height:100%;border:0;border-radius:10px; }
+        .video-placeholder { position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;color:rgba(255,255,255,0.2); }
+        .video-placeholder svg { width:48px;height:48px;stroke:currentColor;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round; }
+        .video-placeholder p { font-size:0.85rem; }
+
+        .code-body { padding:0; }
+        .code-toolbar { display:flex;align-items:center;justify-content:space-between;padding:12px 20px;border-bottom:1px solid var(--border); }
+        .lang-badge { font-size:0.75rem;font-weight:600;color:var(--accent);text-transform:uppercase;letter-spacing:1px; }
+        .copy-btn { background:none;border:1px solid var(--border);border-radius:6px;color:rgba(255,255,255,0.45);font-family:'Inter',sans-serif;font-size:0.75rem;padding:4px 12px;cursor:pointer;transition:color 0.2s,border-color 0.2s; }
+        .copy-btn:hover { color:#fff;border-color:rgba(255,255,255,0.3); }
+        pre { margin:0;padding:24px 20px;overflow-x:auto;font-family:'Fira Code',monospace;font-size:0.88rem;line-height:1.7;color:#e2e8f0; }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <div class="header">
+        <a class="back-btn" href="deberes.html">
+            <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg>
+            Volver
+        </a>
+        <div class="header-text">
+            <h1>Deber <span>2</span></h1>
+            <p><!-- Título del deber --></p>
+        </div>
+    </div>
+
+    <!-- Card: Video -->
+    <div class="card">
+        <div class="card-header">
+            <svg viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg>
+            <span>Video del deber</span>
+        </div>
+        <div class="video-body">
+            <div class="video-wrapper">
+                <!-- Reemplaza ID_DEL_VIDEO con el ID de Google Drive -->
+                <!-- <iframe src="https://drive.google.com/file/d/ID_DEL_VIDEO/preview" allow="autoplay; encrypted-media" allowfullscreen></iframe> -->
+                <div class="video-placeholder">
+                    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8"></polygon></svg>
+                    <p>Video próximamente</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Card: Código -->
+    <div class="card">
+        <div class="card-header">
+            <svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+            <span>Código</span>
+        </div>
+        <div class="code-body">
+            <div class="code-toolbar">
+                <span class="lang-badge">Python</span>
+                <button class="copy-btn" onclick="copiarCodigo()">Copiar</button>
+            </div>
+            <pre id="codeBlock">
+</pre>
+        </div>
+    </div>
+
+</div>
+<script>
+    function copiarCodigo() {
+        const texto = document.getElementById('codeBlock').innerText;
+        navigator.clipboard.writeText(texto).then(() => {
+            const btn = document.querySelector('.copy-btn');
+            btn.textContent = '¡Copiado!';
+            btn.style.color = '#22c55e';
+            btn.style.borderColor = '#22c55e';
+            setTimeout(() => { btn.textContent = 'Copiar'; btn.style.color=''; btn.style.borderColor=''; }, 1800);
+        });
+    }
+</script>
+</body>
+</html>

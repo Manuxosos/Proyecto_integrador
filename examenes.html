@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exámenes – Desarrollo de Software</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --accent:   #f59e0b;
+            --bg-start: #0f1c2e;
+            --bg-end:   #1a3a5c;
+            --card:     rgba(255,255,255,0.05);
+            --border:   rgba(255,255,255,0.12);
+        }
+
+        * { margin:0; padding:0; box-sizing:border-box; }
+
+        body {
+            font-family: 'Inter', Arial, sans-serif;
+            background: linear-gradient(135deg, var(--bg-start) 0%, var(--bg-end) 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+            color: #fff;
+        }
+
+        body::before {
+            content: '';
+            position: fixed; inset: 0;
+            background:
+                radial-gradient(circle at 15% 25%, rgba(245,158,11,0.08) 0%, transparent 50%),
+                radial-gradient(circle at 85% 75%, rgba(245,158,11,0.05) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            animation: fadeUp 0.7s cubic-bezier(0.22,1,0.36,1) both;
+        }
+
+        @keyframes fadeUp {
+            from { opacity:0; transform:translateY(30px); }
+            to   { opacity:1; transform:translateY(0); }
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: rgba(255,255,255,0.45);
+            text-decoration: none;
+            font-size: 0.82rem;
+            margin-bottom: 28px;
+            transition: color 0.2s;
+        }
+        .back-btn:hover { color: var(--accent); }
+        .back-btn svg { width:14px; height:14px; stroke:currentColor; fill:none; stroke-width:2.2; stroke-linecap:round; stroke-linejoin:round; }
+
+        .page-title {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .title-icon {
+            width: 52px; height: 52px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 4px 18px rgba(245,158,11,0.4);
+            flex-shrink: 0;
+        }
+        .title-icon svg { width:24px; height:24px; fill:none; stroke:#fff; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+
+        .title-text h1 { font-size:1.5rem; font-weight:700; }
+        .title-text p  { font-size:0.8rem; color:rgba(255,255,255,0.4); margin-top:3px; text-transform:uppercase; letter-spacing:1.5px; }
+
+        .list { display: flex; flex-direction: column; gap: 14px; }
+
+        /* Tarjeta de examen con dos partes */
+        .item {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            overflow: hidden;
+        }
+
+        .item-header {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            padding: 22px 24px;
+        }
+
+        .num {
+            width: 40px; height: 40px;
+            border-radius: 10px;
+            background: rgba(245,158,11,0.15);
+            border: 1px solid rgba(245,158,11,0.25);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.9rem; font-weight: 700;
+            color: var(--accent);
+            flex-shrink: 0;
+        }
+
+        .item-info { flex: 1; }
+        .item-info h3 { font-size: 1rem; font-weight: 600; margin-bottom: 3px; }
+        .item-info p  { font-size: 0.78rem; color: rgba(255,255,255,0.4); }
+
+        .badge-status {
+            font-size: 0.72rem; font-weight: 600;
+            padding: 4px 10px; border-radius: 20px; flex-shrink: 0;
+        }
+        .badge-pending {
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.3);
+        }
+
+        /* Sub-secciones práctica / teórica */
+        .item-parts {
+            border-top: 1px solid var(--border);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .part {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 24px;
+            text-decoration: none;
+            color: rgba(255,255,255,0.5);
+            font-size: 0.85rem;
+            transition: background 0.2s, color 0.2s;
+            cursor: default;
+        }
+
+        .part:first-child { border-right: 1px solid var(--border); }
+
+        .part svg { width:16px; height:16px; stroke:currentColor; fill:none; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; flex-shrink:0; }
+
+        .part-label { font-weight: 500; }
+        .part-sub   { font-size: 0.72rem; color: rgba(255,255,255,0.25); margin-top:1px; }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <a class="back-btn" href="index.html">
+        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        Volver al inicio
+    </a>
+
+    <div class="page-title">
+        <div class="title-icon">
+            <svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"></path><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
+        </div>
+        <div class="title-text">
+            <h1>Exámenes</h1>
+            <p>1 examen en total</p>
+        </div>
+    </div>
+
+    <div class="list">
+
+        <div class="item">
+            <div class="item-header">
+                <div class="num">1</div>
+                <div class="item-info">
+                    <h3>Examen</h3>
+                    <p>Próximamente</p>
+                </div>
+                <span class="badge-status badge-pending">Pendiente</span>
+            </div>
+            <div class="item-parts">
+                <div class="part">
+                    <svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                    <div>
+                        <div class="part-label">Parte Práctica</div>
+                        <div class="part-sub">Próximamente</div>
+                    </div>
+                </div>
+                <div class="part">
+                    <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+                    <div>
+                        <div class="part-label">Parte Teórica</div>
+                        <div class="part-sub">Próximamente</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+</body>
+</html>

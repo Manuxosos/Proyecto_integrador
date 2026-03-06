@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lecciones – Desarrollo de Software</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --accent:   #8b5cf6;
+            --bg-start: #0f1c2e;
+            --bg-end:   #1a3a5c;
+            --card:     rgba(255,255,255,0.05);
+            --border:   rgba(255,255,255,0.12);
+        }
+
+        * { margin:0; padding:0; box-sizing:border-box; }
+
+        body {
+            font-family: 'Inter', Arial, sans-serif;
+            background: linear-gradient(135deg, var(--bg-start) 0%, var(--bg-end) 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+            color: #fff;
+        }
+
+        body::before {
+            content: '';
+            position: fixed; inset: 0;
+            background:
+                radial-gradient(circle at 15% 25%, rgba(139,92,246,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 85% 75%, rgba(139,92,246,0.07) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            animation: fadeUp 0.7s cubic-bezier(0.22,1,0.36,1) both;
+        }
+
+        @keyframes fadeUp {
+            from { opacity:0; transform:translateY(30px); }
+            to   { opacity:1; transform:translateY(0); }
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: rgba(255,255,255,0.45);
+            text-decoration: none;
+            font-size: 0.82rem;
+            margin-bottom: 28px;
+            transition: color 0.2s;
+        }
+        .back-btn:hover { color: var(--accent); }
+        .back-btn svg { width:14px; height:14px; stroke:currentColor; fill:none; stroke-width:2.2; stroke-linecap:round; stroke-linejoin:round; }
+
+        .page-title {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .title-icon {
+            width: 52px; height: 52px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, #8b5cf6, #6d28d9);
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 4px 18px rgba(139,92,246,0.4);
+            flex-shrink: 0;
+        }
+        .title-icon svg { width:24px; height:24px; fill:none; stroke:#fff; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+
+        .title-text h1 { font-size:1.5rem; font-weight:700; }
+        .title-text p  { font-size:0.8rem; color:rgba(255,255,255,0.4); margin-top:3px; text-transform:uppercase; letter-spacing:1.5px; }
+
+        .list { display: flex; flex-direction: column; gap: 14px; }
+
+        .item {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            padding: 22px 24px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            text-decoration: none;
+            color: #fff;
+            transition: transform 0.2s, box-shadow 0.2s, background 0.2s, border-color 0.2s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .item::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 0; bottom: 0;
+            width: 3px;
+            background: var(--accent);
+            border-radius: 3px 0 0 3px;
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+
+        .item.active:hover {
+            transform: translateX(4px);
+            background: rgba(255,255,255,0.08);
+            border-color: rgba(139,92,246,0.35);
+            box-shadow: 0 6px 24px rgba(0,0,0,0.25);
+        }
+        .item.active:hover::before { opacity: 1; }
+
+        .item.locked { cursor: default; opacity: 0.5; }
+
+        .num {
+            width: 40px; height: 40px;
+            border-radius: 10px;
+            background: rgba(139,92,246,0.15);
+            border: 1px solid rgba(139,92,246,0.25);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.9rem; font-weight: 700;
+            color: var(--accent);
+            flex-shrink: 0;
+        }
+        .item.locked .num {
+            background: rgba(255,255,255,0.06);
+            border-color: rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.3);
+        }
+
+        .item-info { flex: 1; }
+        .item-info h3 { font-size: 1rem; font-weight: 600; margin-bottom: 3px; }
+        .item-info p  { font-size: 0.78rem; color: rgba(255,255,255,0.4); }
+
+        .badge-status {
+            font-size: 0.72rem; font-weight: 600;
+            padding: 4px 10px; border-radius: 20px; flex-shrink: 0;
+        }
+        .badge-pending {
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.3);
+        }
+
+        .arrow { width:16px; height:16px; stroke:rgba(255,255,255,0.3); fill:none; stroke-width:2.2; stroke-linecap:round; stroke-linejoin:round; flex-shrink:0; }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <a class="back-btn" href="index.html">
+        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        Volver al inicio
+    </a>
+
+    <div class="page-title">
+        <div class="title-icon">
+            <svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+        </div>
+        <div class="title-text">
+            <h1>Lecciones</h1>
+            <p>2 lecciones en total</p>
+        </div>
+    </div>
+
+    <div class="list">
+
+        <div class="item locked">
+            <div class="num">1</div>
+            <div class="item-info">
+                <h3>Lección 1</h3>
+                <p>Próximamente</p>
+            </div>
+            <span class="badge-status badge-pending">Pendiente</span>
+        </div>
+
+        <div class="item locked">
+            <div class="num">2</div>
+            <div class="item-info">
+                <h3>Lección 2</h3>
+                <p>Próximamente</p>
+            </div>
+            <span class="badge-status badge-pending">Pendiente</span>
+        </div>
+
+    </div>
+
+</div>
+</body>
+</html>
