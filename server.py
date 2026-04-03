@@ -1,6 +1,6 @@
 """
 Contra Amenaza - Server
-Plataforma de aprendizaje: Java, Ciberseguridad, Redes, Linux
+Plataforma de aprendizaje en Ciberseguridad
 """
 import os
 import hashlib
@@ -13,7 +13,9 @@ from courses import COURSES, get_all_courses_summary, get_course
 from simulator import SCENARIOS, get_all_scenarios_summary, get_scenario, get_scenario_safe
 
 app = Flask(__name__, static_folder='public', static_url_path='')
-app.secret_key = secrets.token_hex(32)
+app.secret_key = os.environ.get('SECRET_KEY', secrets.token_hex(32))
+
+init_db()
 
 
 # ── DB connection lifecycle via Flask g ──────────────────────────────
