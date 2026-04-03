@@ -1,0 +1,34 @@
+# Entorno virtual Python
+venv/
+env/
+.venv/
+
+# Base de datos (se genera automáticamente al iniciar)
+db/cyberlearn.db
+db/*.db
+
+# Cache Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+
+# Variables de entorno
+.env
+.env.local
+
+# Logs
+*.log
+logs/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*.txt
