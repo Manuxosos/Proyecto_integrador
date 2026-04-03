@@ -223,7 +223,7 @@
         <div class="video-body">
 
             <div class="video-wrapper">
-                <iframe src="https://drive.google.com/file/d/1jDQlxUglBJcqsB2CnyYoZTxQlaxkUFoX/preview"
+                <iframe src="https://drive.google.com/file/d/1P5lf6A2gZZN37JcKV17gOsAjNIyc3Mc4/preview"
                     allow="autoplay; encrypted-media" allowfullscreen></iframe>
             </div>
 
@@ -242,20 +242,94 @@
                 <button class="copy-btn" onclick="copiarCodigo()">Copiar</button>
             </div>
             <pre id="codeBlock">
+# Ejercicio 1 - Mayor o menor de edad
 edad = int(input("Ingrese su edad: "))
 
-if edad > 18 :
+if edad > 18:                   # Condición: mayor de 18
     print("eres mayor de edad")
 else:
     print("eres menor de edad")
 
 
+# Ejercicio 2 - Número mayor o menor de 50
 numero = int(input("Ingrese un numero:"))
 
-if numero > 50 :
-    print ("Su numero es mayor de 50:")
+if numero > 50:                 # Compara el número con 50
+    print("Su numero es mayor de 50:")
 else:
-    print ("Su numero es menor de 50:")
+    print("Su numero es menor de 50:")
+
+
+# Ejercicio 3 - Aprobar o reprobar
+nota = float(input("Ingrese su nota"))
+
+if nota >= 7:                   # Aprueba si la nota es 7 o más
+    print("Usted esta aprobado")
+else:
+    print("Usted a reprobado")
+
+
+# Ejercicio 4 - Año bisiesto
+year = int(input("Ingrese un ano"))
+
+if (year % 4 == 0 and year % 100 != 0) or (year % 400 == 0):   # Regla del año bisiesto
+    print("Es un ano bisiesto")
+
+
+# Ejercicio 5 - Comparar dos números
+num1 = int(input("Ingrese su primer numero: "))
+num2 = int(input("Ingrese el segundo numero: "))
+
+if num1 > num2:                 # Compara ambos números
+    print("El primer numero es mayor")
+elif num2 > num1:
+    print("El segundo numero es mayor")
+
+
+# Ejercicio 6 - Múltiplo de 3
+numero = int(input("Ingrese un numero:"))
+
+if numero % 3 == 0:             # % retorna el residuo; si es 0 es múltiplo
+    print("El numero es multiplo de 3")
+else:
+    print("El numero no es multiplo de 3")
+
+
+# Ejercicio 7 - Contraseña
+password = input("Ingrese una contrasena")
+
+if password == "python123":     # Verifica si coincide con la clave correcta
+    print("La contrasena es correcta")
+else:
+    print("La contrasena es incorrecta")
+
+
+# Ejercicio 8 - Positivo, negativo o cero
+numero = float(input("Ingrese un numero: "))
+
+if numero > 0:
+    print("El numero es positivo")
+elif numero < 0:
+    print("El numero es negativo")
+else:                           # Si no es positivo ni negativo, es 0
+    print("El numero es 0")
+
+
+# Ejercicio 9 - Temperatura
+temperatura = float(input("Ingrese la temperatura en C: "))
+
+if temperatura < 15:            # Menos de 15°C se considera frío
+    print("Esta haciendo frio")
+else:
+    print("El clima esta templado")
+
+
+# Ejercicio 10 - Vocal o consonante
+letra = input("ingrese una letra: ").lower()    # .lower() convierte a minúscula
+if letra in "aeiou":            # Verifica si la letra está en las vocales
+    print("La letra es una vocal")
+else:
+    print("La letra no es una vocal")
 </pre>
         </div>
     </div>
