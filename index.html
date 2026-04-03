@@ -231,6 +231,30 @@
             color: rgba(255,255,255,0.4);
         }
 
+        .link-plataforma {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 16px;
+            padding: 14px 20px;
+            background: rgba(34,197,94,0.08);
+            border: 1px solid rgba(34,197,94,0.25);
+            border-radius: 14px;
+            text-decoration: none;
+            color: #4ade80;
+            font-size: 0.88rem;
+            font-weight: 600;
+            transition: background 0.2s, border-color 0.2s, transform 0.2s;
+            animation: fadeUp 0.6s ease 0.75s both;
+        }
+        .link-plataforma:hover {
+            background: rgba(34,197,94,0.15);
+            border-color: rgba(34,197,94,0.45);
+            transform: translateY(-2px);
+        }
+        .link-plataforma svg { width:16px; height:16px; stroke:currentColor; fill:none; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; flex-shrink:0; }
+
         .plataforma-label {
             display: inline-block;
             font-size: 0.7rem;
@@ -306,6 +330,11 @@
             </a>
 
         </div>
+
+        <a class="link-plataforma" href="https://manuxosos.github.io/Proyecto_integrador/" target="_blank">
+            <svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+            Link Plataforma de Aprendizaje
+        </a>
 
     </div>
 </body>
